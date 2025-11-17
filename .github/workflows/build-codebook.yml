@@ -24,16 +24,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fonts-noto-cjk
+      - name: List installed Noto CJK fonts
+        run: |
+          fc-list :family | grep "Noto Sans CJK"
       - name: Build
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: source/codebook/codebook.tex
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           work_in_root_file_dir: true
           extra_system_packages: "gcc g++"
-          extra_fonts: |
-            ./ubuntu-font-family-0.83/*.ttf
+          extra_fonts: ./ubuntu-font-family-0.83/
       - name: Push codebook.pdf
         run: |
           cp source/codebook/codebook.pdf pdf/codebook.pdf
