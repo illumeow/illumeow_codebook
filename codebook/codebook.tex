@@ -17,8 +17,11 @@
 \usepackage{titlesec}
 \usepackage{amsmath}
 \usepackage[CheckSingle, CJKmath]{xeCJK}
-\setCJKmainfont{Noto Sans CJK TC}
-\setCJKmonofont{Noto Sans CJK TC}
+\setCJKmainfont[
+  BoldFont = Noto Sans CJK TC:style=Bold,
+  ItalicFont = Noto Sans CJK TC:style=Regular
+]{Noto Sans CJK TC:style=Regular}
+\setCJKmonofont{Noto Sans CJK TC:style=Regular}
 \usepackage{savetrees}
 \usepackage{array}
 \usepackage{xparse}
