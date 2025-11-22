@@ -1,28 +1,28 @@
-struct BIT {
-  int bit[MAXN + 1], lazy[MAXN + 1], n;
-  int lb(int x) { return x & -x; }
-  void init(int _n, int *data) {
-    n = _n;
+struct BIT {  // 1-based
+  int bit[MAXN + 1], n;
+  #define lb(x) (x & -x)
+  void build(vector<int> &data){
+    n = data.size()-1;
     for (int i = 1, t; i <= n; ++i) {
-      bit[i] = data[i], lazy[i] = 0, t = i - lb(i);
+      bit[i] = data[i], t = i - lb(i);
       for (int j = i - 1; j > t; j -= lb(j))
         bit[i] += bit[j];
     }
   }
-  void suf_modify(int x, int v) {
-    for (int t = x; t; t -= lb(t)) lazy[t] += v;
-    for (int t = x + lb(x); t && t <= n; t += lb(t))
-      bit[t] += v * (x - t + lb(t));
+  void modify(int x, int v){
+    for (; x; x += lb(x)) bit[x] += v;
   }
-  void modify(int x, int v) {
-    for (; x; x -= lb(x)) bit[x] += v;
-  }
-  int query(int x) {
+  int query(int x){
     int re = 0;
-    for (int t = x; t; t -= lb(t))
-      re += lazy[t] * lb(t) + bit[t];
-    for (int t = x + lb(x); t && t <= n; t += lb(t))
-      re += lazy[t] * (x - t + lb(t));
+    for (; x; x -= lb(x)) re += bit[x];
     return re;
+  }
+  // smallest x, cnt[1..x] <= k
+  int query_kth(int k){
+    int res = 0;
+    for (int i = (1 << __lg(n)); i; i >>= 1)
+        if (res + i < n && bit[res + i] < k)
+            k -= bit[res += i];
+    return res + 1;
   }
 };
