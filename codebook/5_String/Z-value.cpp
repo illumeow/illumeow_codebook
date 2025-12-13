@@ -1,11 +1,10 @@
-vi z_value(string s) {
-    int n = s.size(), b = 0;
-    vi z(n);
+vector<int> z_value(string &s) {
+    int n = s.size(), l = 0;
+    vector<int> z(n);
     for(int i=1; i<n; ++i) {
-        if(z[b]+b < i) z[i] = 0;
-        else z[i] = min(z[b]+b-i, z[i-b]);
-        while(s[z[i]] == s[z[i]+i]) z[i]++;
-        if(z[i]+i > z[b]+b) b = i;
+        if(i < l+z[l]) z[i] = min(l+z[l]-i, z[i-l]);
+        while(s[z[i]] == s[i+z[i]]) z[i]++;
+        if(i+z[i] > l+z[l]) l = i;
     }
     return z;
 }
