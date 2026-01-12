@@ -1,8 +1,8 @@
-struct EulerianPath {
+struct EulerianDirPath {
     int n, m;
     vector<vector<int>> adj;
     vector<int> in, out, path;
-    EulerianPath(int _n, int _m): n(_n), m(_m), adj(_n), in(_n), out(_n) {}
+    EulerianDirPath(int _n, int _m): n(_n), m(_m), adj(_n), in(_n), out(_n) {}
     void add_edge(int u, int v) {
         adj[u].eb(v);
         out[u]++;
