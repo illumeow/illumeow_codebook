@@ -1,6 +1,6 @@
 struct DSU {
     vector<int> p, rk;
-    DSU(int n): p(n), rk(n, 1) {
+    DSU(int n): p(n), rk(n) {
         iota(all(p), 0);
     }
     int find(int x) {
