@@ -18,7 +18,7 @@ struct ECC { // 0-base
   }
   ECC(int _n): n(_n), dft(), ecnt(), necc(), low(n), dfn(n), bln(n), G(n) {}
   void add_edge(int u, int v) {
-    G[u].pb(pii(v, ecnt)), G[v].pb(pii(u, ecnt++));
+    G[u].eb(v, ecnt), G[v].eb(u, ecnt++);
   }
   void solve() {
     is_bridge.resize(ecnt);
