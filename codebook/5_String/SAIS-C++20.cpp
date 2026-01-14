@@ -1,4 +1,4 @@
-auto sais(const auto &s) {
+auto sais(const auto &s) {  // C++20
   const int n = SZ(s), z = ranges::max(s) + 1;
   if (n == 1) return vector{0};
   vector<int> c(z); for (int x : s) ++c[x];
